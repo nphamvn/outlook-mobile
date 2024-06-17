@@ -20,6 +20,13 @@ export default function Screen() {
   const path = usePathname();
   const navigation = useNavigation();
 
+  const drawer = useNavigation("/(drawer)");
+  useLayoutEffect(() => {
+    drawer.setOptions({
+      swipeEnabled: true,
+    });
+  }, [drawer]);
+
   const HeaderLeft = () => {
     return (
       <View
@@ -72,13 +79,10 @@ export default function Screen() {
   const [showFilterMenu, setShowFilterMenu] = useState(false);
   const [filter, setFilter] = useState<string>();
   useLayoutEffect(() => {
-    console.log("app/(drawer)/(tabs)/mail/index.tsx::useLayoutEffect");
     navigation.setOptions({
       headerLeft: () => <HeaderLeft />,
     });
   }, [email, folder, navigation]);
-
-  useEffect(() => {}, [email, folder]);
 
   return (
     <React.Fragment>

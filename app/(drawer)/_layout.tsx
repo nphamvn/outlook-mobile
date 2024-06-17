@@ -1,22 +1,20 @@
 import { DrawerContentComponentProps } from "@react-navigation/drawer";
 import { Drawer } from "expo-router/drawer";
-import { View, Text } from "react-native";
+import { View, Text, useWindowDimensions } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-
 import MailTabDrawerContent from "@components/MailTabDrawerContent";
 
 export default function Layout() {
+  const { width } = useWindowDimensions();
+  console.log("width", width);
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <Drawer
-        screenOptions={({ navigation }) => {
-          const state = navigation.getState();
-          const tabsState = state.routes[state.index].state;
-          const tab = tabsState?.routes[tabsState.index]?.name ?? "mail";
+        screenOptions={({}) => {
           return {
             headerShown: false,
             drawerType: "front",
-            swipeEnabled: tab === "mail" || tab === "schedule",
+            swipeEdgeWidth: width,
           };
         }}
         drawerContent={DrawerContent}

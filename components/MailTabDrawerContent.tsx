@@ -12,7 +12,6 @@ export default function MailTabDrawerContent({
   const insets = useSafeAreaInsets();
 
   const { accounts } = useAppContext()!;
-  console.log("app/(drawer)/_layout.tsx:: accounts", accounts);
 
   const { email, folder } = useGlobalSearchParams<{
     email?: string;
@@ -60,11 +59,16 @@ export default function MailTabDrawerContent({
             navigation.closeDrawer();
           }}
         >
-          <View style={[styles.mailIconWrapper, {
-            borderColor: !currentAccount ? "#007AFF" : "#ccc",
-            borderWidth: !currentAccount ? 2 : 1,
-            backgroundColor: !currentAccount ? "white" : "transparent",
-          }]}>
+          <View
+            style={[
+              styles.mailIconWrapper,
+              {
+                borderColor: !currentAccount ? "#007AFF" : "#ccc",
+                borderWidth: !currentAccount ? 2 : 1,
+                backgroundColor: !currentAccount ? "white" : "transparent",
+              },
+            ]}
+          >
             <MailIcon mail={""} style={styles.mailIcon} />
           </View>
         </Pressable>
@@ -77,7 +81,7 @@ export default function MailTabDrawerContent({
               }}
               key={acc.email}
               onPress={() => {
-                if(!isCurrentAccount) {
+                if (!isCurrentAccount) {
                   navigation.setParams({
                     email: acc.email,
                     folder: acc.folders[0],
@@ -86,11 +90,16 @@ export default function MailTabDrawerContent({
                 navigation.closeDrawer();
               }}
             >
-              <View style={[styles.mailIconWrapper, {
-                borderColor: isCurrentAccount ? "#007AFF" : "#ccc",
-                borderWidth: isCurrentAccount ? 2 : 1,
-                backgroundColor: isCurrentAccount ? "white" : "transparent",
-              }]}>
+              <View
+                style={[
+                  styles.mailIconWrapper,
+                  {
+                    borderColor: isCurrentAccount ? "#007AFF" : "#ccc",
+                    borderWidth: isCurrentAccount ? 2 : 1,
+                    backgroundColor: isCurrentAccount ? "white" : "transparent",
+                  },
+                ]}
+              >
                 <MailIcon mail={acc.email} style={styles.mailIcon} />
               </View>
             </Pressable>

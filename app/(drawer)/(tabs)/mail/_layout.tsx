@@ -1,9 +1,18 @@
 import { Stack, useNavigation } from "expo-router";
 
 export default function Layout() {
-  const navigation = useNavigation();
   return (
-    <Stack>
+    <Stack
+      screenOptions={{
+        fullScreenGestureEnabled: true,
+      }}
+      screenListeners={{
+        state: (e) => {
+          if (e.data.state.routes[e.data.state.index].name === "index") {
+          }
+        },
+      }}
+    >
       <Stack.Screen
         name="index"
         options={{

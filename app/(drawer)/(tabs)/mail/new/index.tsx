@@ -6,8 +6,14 @@ export default function Screen() {
   const router = useRouter();
   const path = usePathname();
   const navigation = useNavigation();
+  const drawer = useNavigation("/(drawer)");
+  useLayoutEffect(() => {
+    drawer.setOptions({
+      swipeEnabled: true,
+    });
+  }, [drawer]);
 
-  useLayoutEffect(() => { 
+  useLayoutEffect(() => {
     navigation.setOptions({
       headerLeft: () => (
         <Button

@@ -7,18 +7,25 @@ import {
 } from "@react-navigation/elements";
 
 export default function Screen() {
+  const drawer = useNavigation("/(drawer)");
+  useLayoutEffect(() => {
+    drawer.setOptions({
+      swipeEnabled: false,
+    });
+  }, [drawer]);
+
   const navigation = useNavigation();
-  console.log(
-    "app/(drawer)/(tabs)/mail/view.tsx::navigation.getId: ",
-    navigation.getId()
-  );
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerLeft: (props: HeaderBackButtonProps) => (
-        <HeaderBackButton labelVisible={false} onPress={() => {
-          navigation.goBack();
-        }} {...props} />
+        <HeaderBackButton
+          labelVisible={false}
+          onPress={() => {
+            navigation.goBack();
+          }}
+          {...props}
+        />
       ),
     });
   }, [navigation]);

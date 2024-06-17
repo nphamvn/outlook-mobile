@@ -6,7 +6,6 @@ interface MailIconProps extends ImageProps {
 export default function MailIcon({ mail, ...rest }: MailIconProps) {
   mail = mail || "@";
   const domain = mail.split("@")[1].toLocaleLowerCase();
-  console.log("components/AccountIcon.tsx::domain", domain);
   switch (domain) {
     case "gmail.com":
       return <Image source={require("@assets/gmail.png")} {...rest} />;
